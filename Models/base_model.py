@@ -3,10 +3,19 @@ import uuid
 class BaseModel:
     
     def __init__(self,*args, **kwargs):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
-    
+        '''initialization of Basemodel objects'''
+        if len(kwargs) != 0:
+            if '__class__' in kwargs:
+                del kwargs['__class__']
+            for key, value in kwargs.items():
+                    if key in ['created_at', 'updated_at']:
+                       date_str = kwargs[key]
+                       value = datetime.datetime.fromisoformat(kwargs[key])
+                    setattr(self,key,value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
     def __str__(self):
         '''Modify __str__ '''
         class_name = self.__class__.__name__
