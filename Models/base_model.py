@@ -17,7 +17,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
-            storage.new()
+            storage.new(self)
     def __str__(self):
         '''Modify __str__ '''
         class_name = self.__class__.__name__
@@ -25,7 +25,7 @@ class BaseModel:
     def save(self):
         '''update updated_at with current time'''
         self.updated_at = datetime.datetime.now()
-        storage.save()
+        storage.save(self)
     def to_dict(self):
         '''serializes objects into Json'''
         dict = {}
@@ -35,4 +35,3 @@ class BaseModel:
         self.__dict__['updated_at'] = self.updated_at.isoformat()
         dict = self.__dict__
         return dict
-    

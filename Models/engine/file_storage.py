@@ -2,10 +2,9 @@ import json
 class FileStorage:
     '''class to serializes objects into Json
         Additionally desializes Json into objects'''
-    
+    __file_path = "file_json"
     def __init__(self):
-        '''class constructor'''
-        self.__file_path = file.json
+        '''class constructor''' 
         self.__objects = {}
     
     def all(self):
@@ -18,11 +17,11 @@ class FileStorage:
         key = cls_name + '.' + obj_id
         value = obj.to_dict()
         self.__objects[key] = value
-    def save(self):
+    def save(self, data):
         '''serializes objects into a Json file'''
         data = self.__objects
         file = self.__file_path
-        with open("file" "w") as f:
+        with open(file, "w") as f:
             json.dump(data, f)
     def reload(self):
         '''Desiralizes Json into objects'''
