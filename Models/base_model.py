@@ -1,6 +1,7 @@
 import datetime
 import uuid
-from models import storage
+import models
+
 class BaseModel:
     
     def __init__(self,*args, **kwargs):
@@ -17,7 +18,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
-            storage.new(self)
+        models.storage.new(self)
     def __str__(self):
         '''Modify __str__ '''
         class_name = self.__class__.__name__
@@ -25,13 +26,12 @@ class BaseModel:
     def save(self):
         '''update updated_at with current time'''
         self.updated_at = datetime.datetime.now()
-        storage.save(self)
+        models.storage.save()
     def to_dict(self):
         '''serializes objects into Json'''
-        dict = {}
+        dict = self.__dict__.copy()
         cls_name = self.__class__.__name__
-        self.__dict__['__class__'] = cls_name
-        self.__dict__['created_at'] = self.created_at.isoformat()
-        self.__dict__['updated_at'] = self.updated_at.isoformat()
-        dict = self.__dict__
+        dict['__class__'] = cls_name
+        dict['created_at'] = self.created_at.isoformat()
+        dict['updated_at'] = self.updated_at.isoformat()
         return dict
