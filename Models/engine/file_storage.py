@@ -1,36 +1,44 @@
-<<<<<<< HEAD
+#!/usr/bin/python
+''' new class filestorage that stores new objects in a json file'''
+
 import json
+
+
 class FileStorage:
-    '''class to serializes objects into Json
-        Additionally desializes Json into objects'''
-    __file_path = "file.json" 
+    ''' class filestorage, serializes object instance.
+    The class will also deserialize Json files into instances
+     private class attributes'''
+
+    __file_path = 'file.json'
     __objects = {}
+
     def __init__(self):
         '''class constructor'''
         pass
+
     def all(self):
-        '''Returns a list of all instance objects'''
+        ''' return the dictionary rep of objects'''
         return self.__objects
+
     def new(self, obj):
-        '''set in __objects a new object'''
+        ''' input the new object into __objects.'''
+        ''' classname.id is the key and obj name is value'''
+
         cls_name = obj.__class__.__name__
         self.__objects["{}.{}".format(cls_name, obj.id)] = obj
 
     def save(self):
-        '''serializes objects into a Json file'''
+        '''serialize new object into __file_path'''
         dictionary = {}
-        for obj in self.__objects:
-            dictionary[obj] = self.__objects[obj].to_dict()
-        with open(self.__file_path, "w") as f:
-            json.dump(dictionary, f)
+        for obj in FileStorage.__objects:
+            dictionary[obj] = FileStorage.__objects[obj].to_dict()
+        with open(self.__file_path, "w") as new_file:
+            json.dump(dictionary, new_file)
     def reload(self):
-        '''Desiralizes Json into objects'''
-
+        '''deserializes the json file (__file_path) to t
+        the __objects dictionary'''
         try:
             with open(self.__file_path, "r") as f:
-                self.__objects = json.load(f)
-        except: 
+                dictionary = json.load(f)
+        except FileNotFoundError:
             pass
-    
-=======
->>>>>>> 9747274da1cd61d918d1c52e0a60e7cc125b169c
