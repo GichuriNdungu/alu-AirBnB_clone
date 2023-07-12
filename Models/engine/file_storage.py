@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import json
 class FileStorage:
     '''class to serializes objects into Json
@@ -31,3 +32,5 @@ class FileStorage:
         except: 
             pass
     
+=======
+>>>>>>> 9747274da1cd61d918d1c52e0a60e7cc125b169c
