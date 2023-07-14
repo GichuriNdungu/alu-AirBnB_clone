@@ -38,7 +38,7 @@ class FileStorage:
         '''deserializes the json file (__file_path) to t
         the __objects dictionary'''
         try:
-            with open(self.__file_path, "r") as f:
+            with open(FileStorage.__file_path, "r") as f:
                 dictionary = json.load(f)
         except FileNotFoundError:
             pass

@@ -4,7 +4,7 @@
 
 import uuid
 from datetime import datetime
-import Models
+from Models import storage
 class BaseModel:
     """Defines all common attributes/methods for other classes."""
 
@@ -27,9 +27,7 @@ class BaseModel:
             if "__class__" in kwargs:
                 del kwargs["__class__"]
             self.__dict__.update(kwargs)
-
-        Models.storage.new(self)
-
+        storage.new(self)
     def __str__(self):
         ''' string representation of object'''
         name = type(self).__name__
@@ -40,7 +38,7 @@ class BaseModel:
     def save(self):
         ''' update the date of module update to current date'''
         self.updated_at = datetime.now()
-        Models.storage.save()
+        storage.save()
 
     def to_dict(self):
         ''' append basemodel with classname'''
