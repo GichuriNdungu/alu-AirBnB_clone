@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 ''' new class filestorage that stores new objects in a json file'''
 
 import json
@@ -25,20 +25,27 @@ class FileStorage:
         ''' classname.id is the key and obj name is value'''
 
         cls_name = obj.__class__.__name__
-        self.__objects["{}.{}".format(cls_name, obj.id)] = obj
+        key = cls_name + '.'+ obj.id
+        self.__objects[key] = obj
 
     def save(self):
         '''serialize new object into __file_path'''
         dictionary = {}
-        for obj in FileStorage.__objects:
-            dictionary[obj] = FileStorage.__objects[obj].to_dict()
+        print(f'This is self.__objects {self.__objects}')
+        for obj in self.__objects:
+            dictionary[obj] = self.__objects[obj].to_dict()
         with open(self.__file_path, "w") as new_file:
             json.dump(dictionary, new_file)
     def reload(self):
         '''deserializes the json file (__file_path) to t
         the __objects dictionary'''
+        from models.base_model import BaseModel
         try:
-            with open(FileStorage.__file_path, "r") as f:
+            with open(self.__file_path, "r") as f:
                 dictionary = json.load(f)
+                for key, value  in dictionary.items():
+                    cls_name = eval(value['__class__'])
+                    obj = cls_name(**value)
+                    self.__objects[key] = obj
         except FileNotFoundError:
             pass
