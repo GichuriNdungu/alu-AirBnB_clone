@@ -77,7 +77,14 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(obj)
                 print(obj_list)
         else: 
-            print('continue')
+            all_objs = storage.all()
+            obj_list = []
+            for key, value in all_objs.items():
+                cls_name = key.split('.')[0]
+                print('this is the class name',cls_name)
+                if cls_name == args:
+                    obj_list.append(str(value))
+                    print(obj_list)
     def do_quit(self, arg):
         '''exits the program'''
         print('''Exiting...''')
