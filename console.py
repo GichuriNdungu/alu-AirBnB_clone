@@ -65,6 +65,19 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                 except Exception as e:
                     print("** No instance found")
+    def do_all(self, args):
+        '''Prints a list of all objects
+        params; class_name
+        return; str instance of all objs'''
+        if len(args) == 0:
+            all_objs = storage.all()
+            obj_list = []
+            for key, value in all_objs.items():
+                obj = str(value)
+                obj_list.append(obj)
+                print(obj_list)
+        else: 
+            print('continue')
     def do_quit(self, arg):
         '''exits the program'''
         print('''Exiting...''')
