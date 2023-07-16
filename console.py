@@ -2,6 +2,7 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.engine.file_storage import FileStorage
 """A class that marks the entry point to the CLI"""
 
 class HBNBCommand(cmd.Cmd):
@@ -41,6 +42,27 @@ class HBNBCommand(cmd.Cmd):
                     obj_ids = all_objs.keys()
                     obj = all_objs[key]
                     print(obj)
+                except Exception as e:
+                    print("** No instance found")
+    def do_destroy(self, cls_id):
+
+        '''Destroy object by given parameters'''
+        args = cls_id.split()
+        if len(args) == 0:
+            print("** Class name missing")
+        elif len(args) == 1:
+            print('** Instance id is missing')
+        else:
+            cls = args[0]
+            obj_id = args[1]
+            key = cls + '.' + obj_id
+            if cls not in HBNBCommand.classes.keys():
+                print("** Class doesn't exist")
+            else:
+                try:
+                    all_objs = storage.all()
+                    del all_objs[key]
+                    storage.save()
                 except Exception as e:
                     print("** No instance found")
     def do_quit(self, arg):
