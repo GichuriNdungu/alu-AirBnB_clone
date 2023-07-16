@@ -36,9 +36,13 @@ class HBNBCommand(cmd.Cmd):
             if cls not in HBNBCommand.classes.keys():
                 print("** Class doesn't exist")
             else:
-                all_objs = storage.all()
-                obj = all_objs[key]
-                print(obj)
+                try:
+                    all_objs = storage.all()
+                    obj_ids = all_objs.keys()
+                    obj = all_objs[key]
+                    print(obj)
+                except Exception as e:
+                    print("** No instance found")
     def do_quit(self, arg):
         '''exits the program'''
         print('''Exiting...''')
