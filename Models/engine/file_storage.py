@@ -31,7 +31,6 @@ class FileStorage:
     def save(self):
         '''serialize new object into __file_path'''
         dictionary = {}
-        print(f'This is self.__objects {self.__objects}')
         for obj in self.__objects:
             dictionary[obj] = self.__objects[obj].to_dict()
         with open(self.__file_path, "w") as new_file:
