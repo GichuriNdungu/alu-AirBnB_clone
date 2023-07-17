@@ -3,12 +3,14 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 from models.engine.file_storage import FileStorage
+from models.user import User
 """A class that marks the entry point to the CLI"""
 
 class HBNBCommand(cmd.Cmd):
     prompt = 'HBNB: '
 
-    classes  = {'BaseModel': BaseModel}
+    classes  = {'BaseModel': BaseModel,
+                'User': User}
 
     def do_create(self, class_name):
         '''creates an instance of a class
