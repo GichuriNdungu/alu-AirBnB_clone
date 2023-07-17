@@ -4,13 +4,23 @@ from models.base_model import BaseModel
 from models import storage
 from models.engine.file_storage import FileStorage
 from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 """A class that marks the entry point to the CLI"""
 
 class HBNBCommand(cmd.Cmd):
     prompt = 'HBNB: '
 
     classes  = {'BaseModel': BaseModel,
-                'User': User}
+                'User': User,
+                'State': State,
+                'Amenity': Amenity,
+                'City': City,
+                'Review': Review,
+                'Place': Place}
 
     def do_create(self, class_name):
         '''creates an instance of a class
