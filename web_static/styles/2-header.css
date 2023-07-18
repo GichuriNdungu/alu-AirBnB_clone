@@ -1,5 +1,4 @@
-header {
-    color: #FF0000;
-    height: 70px;
-    width: 100%;
+.header{
+    color: red;
+    border-bottom: 1px  #CCCCCC;
 }
