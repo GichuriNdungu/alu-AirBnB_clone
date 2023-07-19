@@ -3,5 +3,18 @@ body {
     padding: 0;
     color: #484848;
     font-size: 14px;
-    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;;
+    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.container{
+    margin: 30px auto;
+    max-width: 1000px;
+}
+.filters{
+    background-color: white;
+    display: inline-block;
+    height: 70px;
+    width: 100%;
+    border: 1px solid;
+    border-color: red;
+    border-radius: 4px;
 }
