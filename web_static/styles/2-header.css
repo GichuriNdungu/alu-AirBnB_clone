@@ -1,4 +1,14 @@
 .header{
-    color: red;
-    border-bottom: 1px  #CCCCCC;
+    background-color: white;
+    border-bottom: 1px solid;
+    border-color: #CCCC;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    width:100%;
+}
+.header img{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
 }
