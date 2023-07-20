@@ -4,6 +4,7 @@
     height: 70px;
     width: 100%;
     border: 1px solid #DDDDDD;
+    position: relative;
 }
 button{
     font-size: 18pxs;
@@ -45,4 +46,12 @@ h4{
     font-weight: 400;
     font-size: 14px;
     margin-top: 5px;
+}
+.popover{
+    color:#FAFAFA;
+    position: absolute;
+    width: 25%;
+    border: 1px solid #DDDDDD;
+    left: 0%;
+    margin-top: 0%;
 }
