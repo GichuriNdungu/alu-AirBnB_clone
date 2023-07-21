@@ -49,6 +49,7 @@ h4{
     font-size: 14px;
     margin-top: 5px;
 }
+/*
 .popover{
     color:#FAFAFA;
     position: absolute;
@@ -59,7 +60,23 @@ h4{
 }
 ul{
     list-style-type:none;
+    font-weight: 600;
 }
 h2{
     font-size: 16px;
+}
+*/
+.popover{
+    position: absolute;
+    left: 0%;
+    margin-top: 0%;
+    width: 235px;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+    display: none;
+
+}
+.locations:hover .popover, 
+.amenities:hover .popover {
+    display: block
 }
