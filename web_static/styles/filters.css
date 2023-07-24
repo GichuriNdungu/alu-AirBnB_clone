@@ -70,7 +70,7 @@ h2{
     position: absolute;
     left: 0%;
     margin-top: 0%;
-    width: 235px;
+    width: 86%;
     border-radius: 4px;
     border: 1px solid #DDDDDD;
     display: none;
@@ -78,5 +78,6 @@ h2{
 }
 .locations:hover .popover, 
 .amenities:hover .popover {
-    display: block
+    display: block;
+    z-index: 1;
 }
