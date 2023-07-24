@@ -30,7 +30,7 @@ button:hover{
     position:relative;
     padding-left: 30px;
 }
-.amenities{
+.filters .amenities{
     display: inline-block;
     vertical-align: middle;
     height: 100%;

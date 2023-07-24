@@ -1,0 +1,17 @@
+.places .amenities{
+    margin-top: 40px;
+    border-bottom: 1px solid #DDDDDD;
+}
+.places .amenities h2{
+    font-size: 16px;
+    text-align: left;
+}
+ul{
+    list-style: none;
+    padding: 0%;
+}
+li img{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
