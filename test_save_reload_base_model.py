@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-from models import storage
-from models.base_model import BaseModel
-from models.user import User
+from Models import storage
+from Models.base_model import BaseModel
+from Models.user import User
 
 print("-- Create a new User --")
 my_user = User()
