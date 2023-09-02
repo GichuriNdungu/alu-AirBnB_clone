@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 import cmd
-from models.base_model import BaseModel
-from models import storage
-from models.engine.file_storage import FileStorage
-from models.user import User
-from models.amenity import Amenity
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
+from Models.base_model import BaseModel
+from Models import storage
+from Models.engine.file_storage import FileStorage
+from Models.user import User
+from Models.amenity import Amenity
+from Models.city import City
+from Models.place import Place
+from Models.review import Review
+from Models.state import State
 """A class that marks the entry point to the CLI"""
 
 class HBNBCommand(cmd.Cmd):
@@ -22,17 +22,37 @@ class HBNBCommand(cmd.Cmd):
                 'Review': Review,
                 'Place': Place}
 
-    def do_create(self, class_name):
+    def do_create(self, args):
         '''creates an instance of a class
         saves the instance and prints id'''
+        new_args = args.split(' ')
+        class_name = new_args[0]
         if len(class_name) == 0:
             print("** Class name missing")
-        elif class_name in HBNBCommand.classes.keys():
-            obj = HBNBCommand.classes[class_name]()
-            obj.save()
-            print(obj.id)
         else:
-            print('** Class not found')
+            if class_name not in HBNBCommand.classes.keys():
+                print('** Class not found')
+            else:
+                '''create a new instance of the class'''
+                obj = HBNBCommand.classes[class_name]()
+                '''parse the parameters in the form of key=value'''
+
+                params = {}
+
+                for param in new_args[1:]:
+                    key_value = param.split('=')
+                    if len(key_value) == 2:
+                        key, value = key_value
+                        params[key] = value
+                    else:
+                        print('**invalid syntax')
+                '''set the instance attributes with the newly parse parameters'''
+
+                for key, value in params.items():
+                    setattr(obj, key, value)
+                '''save the object and print its id'''
+                obj.save()
+                print(obj.id)
     def do_show(self, cls_id):
 
         '''return str rep of obj
