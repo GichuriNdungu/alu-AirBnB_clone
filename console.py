@@ -25,34 +25,37 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         '''creates an instance of a class
         saves the instance and prints id'''
+        '''first split the arguments'''
         new_args = args.split(' ')
         class_name = new_args[0]
+        '''check whether the class_name exists'''
         if len(class_name) == 0:
             print("** Class name missing")
         else:
             if class_name not in HBNBCommand.classes.keys():
-                print('** Class not found')
+                print('** Class does not exist **')
             else:
                 '''create a new instance of the class'''
                 obj = HBNBCommand.classes[class_name]()
-                '''parse the parameters in the form of key=value'''
-
-                params = {}
-
-                for param in new_args[1:]:
-                    key_value = param.split('=')
-                    if len(key_value) == 2:
-                        key, value = key_value
-                        print(key_value)
-                        params[key] = value
-                        print(params)
-                    else:
-                        print('**invalid syntax')
-                '''set the instance attributes with the newly parse parameters'''
-                    
-                for key, value in params.items():
-                    setattr(obj, key, value)
-                '''save the object and print its id'''
+                '''check for any parameters provided and
+                parse the parameters in the form of key=value'''
+                if len(new_args) > 1:
+                    params = new_args[1:]
+                    for param in params:
+                        key, value = param.split('=')
+                        ''' try whether the value is a proper python expression'''
+                        try:
+                            value = eval(value)
+                        except Exception as e:
+                            pass
+                        '''adjust the string parameter'''
+                        '''check if value is str and has an '_'''
+                        if type(value) == str and '_' in value:
+                            value = value.replace('_', ' ')
+                        setattr(obj, key, value)
+                    obj.save()
+                    print(obj.id)
+                    return
                 obj.save()
                 print(obj.id)
     def do_show(self, cls_id):
