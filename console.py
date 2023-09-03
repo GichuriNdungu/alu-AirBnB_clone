@@ -43,11 +43,13 @@ class HBNBCommand(cmd.Cmd):
                     key_value = param.split('=')
                     if len(key_value) == 2:
                         key, value = key_value
+                        print(key_value)
                         params[key] = value
+                        print(params)
                     else:
                         print('**invalid syntax')
                 '''set the instance attributes with the newly parse parameters'''
-
+                    
                 for key, value in params.items():
                     setattr(obj, key, value)
                 '''save the object and print its id'''
