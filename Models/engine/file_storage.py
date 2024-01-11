@@ -16,10 +16,15 @@ class FileStorage:
         '''class constructor'''
         pass
 
-    def all(self):
+    def all(self, cls=None):
         ''' return the dictionary rep of objects'''
-        return self.__objects
-
+        for obj in self.__objects.keys():
+            print(obj)
+            cls_name = obj.split('.')[0]
+            if cls_name == cls:
+                return self.__objects[obj]
+            else:
+                return self.__objects
     def new(self, obj):
         ''' input the new object into __objects.'''
         ''' classname.id is the key and obj name is value'''
@@ -53,4 +58,13 @@ class FileStorage:
                     obj = cls_name(**value)
                     self.__objects[key] = obj
         except FileNotFoundError:
+            pass
+    def delete(self, obj=None):
+        '''deletes objects from self.__objects
+        if obj=None, do nothing'''
+        cls_name = obj.__class__.__name__
+        key = cls_name + '.'+ obj.id
+        if key in self.__objects:
+            del(self.__objects[key])
+        else:
             pass

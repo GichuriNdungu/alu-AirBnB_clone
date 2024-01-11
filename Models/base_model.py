@@ -5,6 +5,7 @@
 import uuid
 from datetime import datetime
 from Models import storage
+from Models.engine.file_storage import FileStorage
 class BaseModel:
     """Defines all common attributes/methods for other classes."""
 
