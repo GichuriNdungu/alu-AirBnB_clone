@@ -68,3 +68,8 @@ class FileStorage:
             del(self.__objects[key])
         else:
             pass
+    
+    @property
+    def cities(self):
+        '''getter method for the cities
+        matches the cities to the corresponding state'''
